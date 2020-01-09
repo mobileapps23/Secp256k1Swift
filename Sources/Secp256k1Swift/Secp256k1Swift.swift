@@ -216,7 +216,7 @@ public struct Secp256k1 {
         }
 
         //return Array(signature[..<sigLen])
-        return Array(signature[..=sigLen])
+        return signature
     }
 
     public static func verify(msg: [UInt8], sig: Signature, pubkey: PublicKey) -> Bool {
