@@ -207,7 +207,7 @@ public struct Secp256k1 {
             throw Error.internalError
         }
 
-        var sigLen = 71//74
+        var sigLen = 74
         var signature = [UInt8](repeating: 0, count: sigLen)
 
         guard secp256k1_ecdsa_signature_serialize_der(context, &signature, &sigLen, &cSignature) == 1,
@@ -215,8 +215,8 @@ public struct Secp256k1 {
             throw Error.internalError
         }
 
-        //return Array(signature[..<sigLen])
-        return signature
+        return Array(signature[..<sigLen])
+        
     }
 
     public static func verify(msg: [UInt8], sig: Signature, pubkey: PublicKey) -> Bool {
