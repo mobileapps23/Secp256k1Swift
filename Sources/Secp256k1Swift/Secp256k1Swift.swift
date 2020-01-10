@@ -206,7 +206,7 @@ public struct Secp256k1 {
         guard secp256k1_ecdsa_sign(context, &cSignature, msg, privkey, nonceFunction.function, nil) == 1 else {
             throw Error.internalError
         }
-
+    print(cSignature, "   ---  cSignature")
         var sigLen = 74
         var signature = [UInt8](repeating: 0, count: sigLen)
 
@@ -214,7 +214,7 @@ public struct Secp256k1 {
             secp256k1_ecdsa_signature_parse_der(context, &cSignature, &signature, sigLen) == 1 else {
             throw Error.internalError
         }
-
+print(signature, "   ---  signature")
         return Array(signature[..<sigLen])
         
     }
